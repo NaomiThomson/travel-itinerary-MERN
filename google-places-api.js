@@ -1,18 +1,20 @@
+var coordinates = require('./google-geocode-api');
+
 var map;
 var infowindow;
 
 function initMap() {
-  var pyrmont = { lat: -33.867, lng: 151.195 };
+  var destination = coordinates();
 
   map = new google.maps.Map(document.getElementById('map'), {
-    center: pyrmont,
+    center: destination,
     zoom: 15
   });
 
   infowindow = new google.maps.InfoWindow();
   var service = new google.maps.places.PlacesService(map);
   service.nearbySearch({
-    location: pyrmont,
+    location: destination,
     radius: 500,
     type: ['store']
   }, callback);
