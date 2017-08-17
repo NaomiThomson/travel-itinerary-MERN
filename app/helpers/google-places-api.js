@@ -1,10 +1,13 @@
-var coordinates = require('./google-geocode-api');
+var {getCoords} = require('./google-geocode-api');
+var axios = require('axios');
+
 
 var map;
 var infowindow;
 
 function initMap() {
-  var destination = coordinates();
+
+  getCoords("Irvine CA");
 
   map = new google.maps.Map(document.getElementById('map'), {
     center: destination,
@@ -40,3 +43,5 @@ function createMarker(place) {
     infowindow.open(map, this);
   });
 }
+
+initMap();
